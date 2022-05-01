@@ -1,27 +1,14 @@
 import { Pie, Bar } from 'react-chartjs-2'
 import React, { useState, useEffect } from 'react'
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Row,
-  Col,
-  Table,
-} from 'reactstrap'
+import { Card, CardBody, CardHeader, Col, Table } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { FlexContainer, MarginBottomDiv } from '~/components/Styled'
 
 const DecisionDashboard = () => {
   const dispatch = useDispatch()
-  const {
-    criteriaWeight,
-    result,
-    athelete,
-    crtWeight,
-    optCrtWeights,
-    crtCount,
-  } = useSelector((state) => state.athleteCriteria)
+  const { criteriaWeight, result, athelete } = useSelector(
+    (state) => state.athleteCriteria,
+  )
 
   const [state, setState] = useState({
     pieData: undefined,
@@ -340,8 +327,7 @@ const DecisionDashboard = () => {
               <tbody>
                 <tr>
                   <td style={{ fontWeight: 500, color: '#000000' }}>
-                    {athelete.firstName + ' ' + athelete.lastName}git checkout
-                    -b new_branch
+                    {athelete.firstName + ' ' + athelete.lastName}
                   </td>
                 </tr>
               </tbody>

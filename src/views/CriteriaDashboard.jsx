@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardBody, Col, CardHeader, Table } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { FlexContainer, MarginBottomDiv } from '~/components/Styled'
+import { getAthletesCriteria } from '~/redux/actions'
 
 const DecisionDashboard = () => {
   const dispatch = useDispatch()
@@ -10,7 +11,9 @@ const DecisionDashboard = () => {
     (state) => state.athleteCriteria,
   )
 
-  const { firstName, lastName } = useSelector((state) => state.athlete)
+  const { firstName, lastName, athleteId } = useSelector(
+    (state) => state.athlete,
+  )
 
   const [state, setState] = useState({
     pieData: undefined,
@@ -69,6 +72,7 @@ const DecisionDashboard = () => {
       }
       setState({ ...state, pieData: pieChartData })
     }
+    dispatch(getAthletesCriteria(athleteId))
   }, [criteriaWeight])
 
   const renderTableRow = (criteriaWeight) => {

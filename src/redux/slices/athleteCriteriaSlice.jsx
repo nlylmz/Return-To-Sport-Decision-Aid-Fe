@@ -5,6 +5,7 @@ import {
   createAthleteCriteria as createAthleteCriteriaRequest,
   createAthleteCriteriaValue as createAthleteCriteriaValueRequest,
   getAthletesCriteria as getAthletesCriteriaRequest,
+  getDashboardResult as getDashboardResultRequest,
   createOptionsEvaluation as createOptionsEvaluationRequest,
 } from '~/api/athleteCriteriaAPI'
 
@@ -94,6 +95,20 @@ const athleteCriteria = createSlice({
       state.creatingState = 'failed'
       state.error = action.payload
     },
+    dashboardResultFetching: (state) => {
+      state.fetchingState = 'requesting'
+    },
+    dashboardResultFetched: (state, { payload }) => {
+      state.fetchingState = 'success'
+      state.criteriaWeight = payload.orderedCrtWeight
+      state.result = payload.optResult
+      state.athelete = payload.athelete
+      console.log(state.result)
+    },
+    dashboardResultFetchingError: (state, action) => {
+      state.fetchingState = 'failed'
+      state.error = action.payload
+    },
   },
 })
 
@@ -113,6 +128,9 @@ export const {
   optionsEvaluationCreating,
   optionsEvaluationCreated,
   optionsEvaluationCreatingError,
+  dashboardResultFetching,
+  dashboardResultFetched,
+  dashboardResultFetchingError,
 } = athleteCriteria.actions
 
 export default athleteCriteria.reducer
@@ -187,6 +205,25 @@ export const createOptionsEvaluation = (optionsEvaluation) => async (
     }
   } catch (err) {
     dispatch(optionsEvaluationCreatingError(err.toString()))
+  }
+  clearNotifications(dispatch)
+}
+
+export const getAtheleteDashboardResult = (athleteId) => async (dispatch) => {
+  try {
+    dispatch(dashboardResultFetching())
+    console.log(athleteId)
+    const response = await getDashboardResultRequest(athleteId)
+    if (response.success) {
+      dispatch(dashboardResultFetched(response))
+      dispatch(
+        loadingFetched('İşlem başarılı, lütfen "İleri" butonuna basınız.'),
+      )
+    } else {
+      dispatch(dashboardResultFetchingError(response.message))
+    }
+  } catch (err) {
+    dispatch(loadingFetchingError(err.toString()))
   }
   clearNotifications(dispatch)
 }

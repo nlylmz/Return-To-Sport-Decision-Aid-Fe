@@ -5,7 +5,6 @@ import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import Evaluation from '~/views/Evaluation.jsx'
 import Athletes from '~/views/Athletes.jsx'
 import Feedback from '~/views/Feedback.jsx'
 import DecisionDashboard from '~/views/DecisionDashboard.jsx'
@@ -35,23 +34,17 @@ function getStepContent(stepIndex) {
     case 1:
       return (
         <div className="animated fadeIn" style={{ height: '70vh' }}>
-          <Evaluation />
-        </div>
-      )
-    case 2:
-      return (
-        <div className="animated fadeIn" style={{ height: '70vh' }}>
           <DecisionDashboard />
         </div>
       )
-    case 3:
+    case 2:
       return (
         <div className="animated fadeIn" style={{ height: '70vh' }}>
           <Feedback />
         </div>
       )
 
-    case 4:
+    case 3:
       return <div className="animated fadeIn" style={{ height: '70vh' }}></div>
     default:
       return 'Unknown stepIndex'
@@ -81,12 +74,7 @@ export default function DoctorPage() {
   }
 
   function getSteps() {
-    return [
-      'Choose the Athlete',
-      'Evaluate options based on the criteria',
-      'Dashboard Result',
-      'Feedback',
-    ]
+    return ['Choose the Athlete', 'Dashboard Result', 'Feedback']
   }
 
   return (

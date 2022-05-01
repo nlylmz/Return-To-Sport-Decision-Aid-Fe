@@ -6,6 +6,7 @@ import {
   createAthleteCriteriaValue,
   getAthletesCriteria,
   createOptionsEvaluation,
+  getAtheleteDashboardResult,
 } from './slices/athleteCriteriaSlice'
 
 export {
@@ -16,4 +17,5 @@ export {
   getAthletesCriteria,
   createOptionsEvaluation,
   createFeedbacks,
+  getAtheleteDashboardResult,
 }

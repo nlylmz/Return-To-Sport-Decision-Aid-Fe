@@ -35,3 +35,14 @@ export async function createOptionsEvaluation(optionsEvaluation) {
   const { data } = await axios.post(url, optionsEvaluation)
   return data
 }
+
+export async function getDashboardResult(athleteId) {
+  const axios = await axiosService.createAxiosInstance()
+  const url = `${apiURL}/DashboardResult/${athleteId}`
+  try {
+    const criteria = await axios.get(url)
+    return criteria.data
+  } catch (err) {
+    throw err
+  }
+}

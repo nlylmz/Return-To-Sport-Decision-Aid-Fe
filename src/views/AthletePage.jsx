@@ -10,6 +10,7 @@ import SignUp from '~/views/SignUp.jsx'
 import Criteria from '~/views/Criteria.jsx'
 import { useHistory } from 'react-router-dom'
 import CriteriaDashboard from '~/views/CriteriaDashboard.jsx'
+import Evaluation from '~/views/Evaluation.jsx'
 //import { useBetween } from 'use-between'
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +50,12 @@ function getStepContent(stepIndex) {
       return (
         <div className="animated fadeIn" style={{ height: '70vh' }}>
           <CriteriaDashboard />
+        </div>
+      )
+    case 4:
+      return (
+        <div className="animated fadeIn" style={{ height: '70vh' }}>
+          <Evaluation />
         </div>
       )
     default:
@@ -99,6 +106,7 @@ export default function AthletePage() {
       'Choose the criteria',
       'Compare the criteria',
       'Dashboard Criteria',
+      'Evaluate options based on the criteria',
     ]
   }
 
