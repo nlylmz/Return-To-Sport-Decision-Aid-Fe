@@ -21,7 +21,7 @@ You must have npm installed before setting up this project.
 
 ``` bash
 # clone the repo
-$ git clone https://gitlab.tpao.gov.tr/acalbayrak/fe-template.git my-project
+$ git clone https://github.com/nlylmz/Return-To-Sport-Decision-Aid-Fe.git
 
 # go into app's directory
 $ cd my-project
